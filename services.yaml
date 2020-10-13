@@ -1,0 +1,9 @@
+show_cities:
+  description: Create notification and show cities available from SaveEcoBot.
+
+show_city_stations:
+  description: Create notification and show stations IDs together with their addresses for given city
+  fields:
+    city:
+      description: City name, as returned by show_cities service.
+      example: "Kyiv"

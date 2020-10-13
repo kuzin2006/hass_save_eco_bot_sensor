@@ -1,0 +1,7 @@
+{
+  "domain": "save_eco_bot",
+  "name": "SaveEcoBot",
+  "documentation": "",
+  "requirements": ["pydantic==1.6.1", "requests==2.22.0"],
+  "codeowners": ["@kuzin2006"]
+}
