@@ -23,6 +23,7 @@ from homeassistant.const import (
 )
 
 DOMAIN = "save_eco_bot"
+SENSOR_DEPRECATION_HOURS = 12
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -85,6 +86,7 @@ class SaveEcoBotSensorModel(BaseModel):
     sensor_type: PollutantType
     state: float
     device_state_attributes: dict
+    deprecated: bool = True
 
 
 class Station(BaseModel):
@@ -131,6 +133,7 @@ class Station(BaseModel):
                 sensor_type=p.pol,
                 state=p.value,
                 device_state_attributes=attrs,
+                deprecated=datetime.datetime.now() - p.time > datetime.timedelta(hours=SENSOR_DEPRECATION_HOURS)
             )
             station_sensors.append(station_sensor)
         return station_sensors
@@ -308,6 +311,8 @@ class SaveEcoBotSensor(Entity):
     @property
     def state(self):
         """Return the state of the sensor."""
+        if self._model.deprecated:
+            return "deprecated"
         return self._model.state if self._model else "unknown"
 
     @property
