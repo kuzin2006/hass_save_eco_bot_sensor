@@ -1,7 +1,8 @@
 {
   "domain": "save_eco_bot",
   "name": "SaveEcoBot",
-  "documentation": "",
+  "documentation": "https://github.com/kuzin2006/hass_save_eco_bot_sensor/blob/master/README.md",
   "requirements": ["pydantic==1.6.1", "requests==2.22.0"],
+  "dependencies": ["sensor"],
   "codeowners": ["@kuzin2006"]
 }
